@@ -7,7 +7,7 @@ import Main from "./Main";
 const Home = () => {
     return(
         <>
-        <h1>home</h1>
+        {/* header 대신 Navigation */}
         <Navigation />
         <Main />
         </>

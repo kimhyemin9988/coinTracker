@@ -5,6 +5,7 @@ const Home = lazy(() => import('../components/Home'));
 const AuthJoin = lazy(() => import('../Auth/AuthJoin'));
 const AuthLogin = lazy(() => import('../Auth/AuthLogin'));
 const Profile = lazy(() => import('../components/Profile'));
+const Detail = lazy(() => import('../components/Detail'));
 /* React.lazy 함수를 사용하면 동적 import를 사용해서 컴포넌트를 렌더링
     모듈을 return하는 콜백함수
     로딩되길 기다리는 동안 로딩화면등의 예비컨텐츠 볼수 있음 => Suspense 사용
@@ -18,6 +19,7 @@ const RouterApp = () => {
                 <Route path="/login" element={<AuthLogin />} />
                 <Route path="/join" element={<AuthJoin/>} />
                 <Route path="/profile" element={<Profile/>} />
+                <Route path="/detail/:id" element={<Detail/>} />
             </Routes>
         </Suspense>
     </Router>
