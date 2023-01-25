@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from "react";
-import { dbService } from "../fbfirst";
+import { authService } from "../../difirebase"
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 const Viewers = () => {
     return(
