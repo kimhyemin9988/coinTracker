@@ -1,15 +1,11 @@
-/* 4 */
 import React,{ useState, useEffect } from "react";
 import { dbService } from "../fbfirst";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import Navigation from "./Navigation";
-import Main from "./Main";
-const Home = () => {
+const ImgSlider = () => {
     return(
         <>
-            <Navigation />
-            <Main />
+            <h1>ImgSlider</h1>
         </>
-    )
+    );
 };
-export default Home;
+export default ImgSlider;
