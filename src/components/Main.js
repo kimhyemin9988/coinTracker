@@ -1,9 +1,9 @@
 import React,{ useState, useEffect } from "react";
 import { authService, dbService } from "../difirebase"
 import { doc, onSnapshot, query, orderBy, collection } from "firebase/firestore";
-import  ImgSlider from "../components/HomeCom/ImgSlider"
-import  Movies from "../components/HomeCom/Movies"
-import  Viewers from "../components/HomeCom/Viewers"
+import  ImgSlider from "./Main/ImgSlider"
+import  Movies from "./Main/Movies"
+import  Viewers from "./Main/Viewers"
 /* 로그인 되어있으면 Navigition null 표시 */
 const Main = () => {
     /* 가져온 데이터 */
