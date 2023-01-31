@@ -1,21 +1,33 @@
 import React,{ useState, useEffect } from "react";
 import { authService, dbService } from "../difirebase"
 import { doc, onSnapshot, query, orderBy, collection } from "firebase/firestore";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 const Father = styled.div`
     display:flex;
+    height: 100vh;
+    width: 100%;
 `
 const Box = styled.div`
-    background-color: #18bfef;
+    background-color: ${(element)=> element.bgC};
     color: #ffffff;
     box-shadow: 0 15px 25px rgb(0 0 0 / 40%);
+    width: 10%;
+    height: 100px;
+`;
+const Circle = styled(Box)`
+    border-radius: 50px;
+`
+const Input = styled.input.attrs({required : true})`
+    background-color: #5661f2;
 `
 const Main = () => {
-
     return(
        <Father>
-            <Box></Box>
-            <Box></Box>
+            <Box bgC="red"></Box>
+            <Box bgC="#18bfef"></Box>
+            <Circle></Circle>
+            <Circle as="button"></Circle>
+            <Input></Input>
        </Father>
     );
 };
