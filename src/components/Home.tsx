@@ -9,7 +9,7 @@ const Home = () => {
         <>
         {/* header 대신 Navigation */}
         <Navigation />
-        <Main />
+        <Main/>
         </>
     );
 };
