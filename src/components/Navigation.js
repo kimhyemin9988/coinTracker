@@ -3,10 +3,9 @@ import React,{ useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { dbService } from "../difirebase";
 /* 로그인시 login,join null, myProfile render */
-import styles from "../css/Navigation.module.css"
 const Navigation = () =>{
     return(
-        <div className={styles.Bg}>
+        <div>
             <Link to="/login">login</Link>
             <Link to="/join">join</Link>
             <Link to="/profile">myProfile</Link>

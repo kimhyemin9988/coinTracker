@@ -2,8 +2,8 @@
 import React,{ useState, useEffect } from "react";
 import { authService } from "../difirebase"
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import Navigation from "./Navigation";
 import Main from "./Main";
+import Navigation from "./Navigation"
 const Home = () => {
     return(
         <>
