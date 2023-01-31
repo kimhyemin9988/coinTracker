@@ -3,7 +3,7 @@ import { dbService } from "../../difirebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { Link } from "react-router-dom";
 /* movieObj 이미지 */
-const Movies = ({movies}) => {
+const Movies = () => {
 /*     return(
         <>
         <Container>

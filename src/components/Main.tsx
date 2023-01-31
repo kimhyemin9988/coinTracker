@@ -8,7 +8,7 @@ const Father = styled.div`
     width: 100%;
 `
 const Box = styled.div`
-    background-color: ${(element)=> element.bgC};
+    background-color: ${(element)=> element.theme.bgC};
     color: #ffffff;
     box-shadow: 0 15px 25px rgb(0 0 0 / 40%);
     width: 10%;
@@ -23,8 +23,8 @@ const Input = styled.input.attrs({required : true})`
 const Main = () => {
     return(
        <Father>
-            <Box bgC="red"></Box>
-            <Box bgC="#18bfef"></Box>
+            <Box></Box>
+            <Box></Box>
             <Circle></Circle>
             <Circle as="button"></Circle>
             <Input></Input>

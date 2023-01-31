@@ -19,7 +19,7 @@ const RouterApp = () => {
                 <Route path="/login" element={<AuthLogin />} />
                 <Route path="/join" element={<AuthJoin/>} />
                 <Route path="/profile" element={<Profile/>} />
-                <Route path="/detail/:id" element={<Detail/>} />
+                <Route path="/detail" element={<Detail/>} />
             </Routes>
         </Suspense>
     </Router>
