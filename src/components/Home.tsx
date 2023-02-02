@@ -1,6 +1,6 @@
 const Home = () => {
     return(
-        <><h2>hello!</h2></>
+        <h2>Coins</h2>
     );
 };
 export default Home;
