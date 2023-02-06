@@ -1,11 +1,12 @@
 import ReactDOM from 'react-dom/client';
-import App from './App/App';
+import RouterApp from './App/Router';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './theme'; 
+import { theme } from './theme';
+import { RouterProvider } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById("root")as HTMLElement);
 root.render(
         <ThemeProvider theme={theme}>
-                <App />
+                <RouterProvider router={RouterApp} />
         </ThemeProvider>
 
 );

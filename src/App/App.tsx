@@ -1,4 +1,5 @@
 /* (2) 다른 파일로 된 컴포넌트를 동시에 랜딩 가능함*/
+import { Outlet } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import RouterApp from './Router';
 const GlobalStyle = createGlobalStyle`
@@ -63,7 +64,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle/>
-      <RouterApp/>
+	  <Outlet></Outlet>
     </>
   );
 }
