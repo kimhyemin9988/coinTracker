@@ -13,10 +13,10 @@ interface CoinType {
 }
 
 const CoinName = styled.span`
-    color: ${(props)=>props.theme.textColor};
+    color: ${(props) => props.theme.textColor};
 `
 const Box1 = styled.div`
-    background-color: ${(props)=>props.theme.contentColor};
+    background-color: ${(props) => props.theme.contentColor};
     width: 50%;
     height: 100px;
     ${CoinName};
@@ -31,28 +31,27 @@ const Home = () => {
     //<CoinType> const coins: CoinType | undefined
     //'CoinType' 형식에 'map' 속성이 없습니다
     useEffect(() => {
-        (async() => {
+        (async () => {
             const response = await fetch('https://api.coinpaprika.com/v1/coins');
             const json = await response.json();
             setCoins(json.slice(0, 100));
             setLoading(false);
         })();
     }, []);
-    console.log(coins);
-/*    console.log(Object.keys(coins[0]).join());
-     console.log(Object.values(coins[0]).map(v=>typeof v).join()); */
-    return(
+    /*    console.log(Object.keys(coins[0]).join());
+         console.log(Object.values(coins[0]).map(v=>typeof v).join()); */
+    return (
         <>
-        {loading ? "loading중입니다." : coins.map((coin)=> {
-        return(
-            <Box1 key={coin.id}>
-                <CoinName>      
-                    <Link to={`/${coin.symbol.toLowerCase()}`} state={{ coin }}>{coin.id}</Link>
-                </CoinName>
-                <CoinImg src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}></CoinImg>
-            </Box1>
-        );
-        })}
+            {loading ? "loading중입니다." : coins.map((coin) => {
+                return (
+                    <Box1 key={coin.id}>
+                        <CoinName>
+                            <Link to={`${coin.id}`} state={coin}>{coin.id}</Link>
+                        </CoinName>
+                        <CoinImg src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}></CoinImg>
+                    </Box1>
+                );
+            })}
         </>
     );
 };
