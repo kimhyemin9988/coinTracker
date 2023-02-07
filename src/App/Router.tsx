@@ -1,8 +1,9 @@
 /* (3) */
 import { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, createBrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, createBrowserRouter, useParams } from 'react-router-dom';
 import CoinDetail from '../components/CoinDetail';
 import Home from '../components/Home';
+import NotFound from '../components/Notfound';
 import App from './App';
 /* React.lazy 함수를 사용하면 동적 import를 사용해서 컴포넌트를 렌더링
     모듈을 return하는 콜백함수
@@ -16,15 +17,15 @@ const RouterApp = createBrowserRouter([
             {
                 path:"",
                 element:<Home />,
+                children:[
+                    {
+                        path:":coin",
+                        element:<CoinDetail></CoinDetail>
+                    }
+                ]
             },
-            {
-                path:"/coinDetail",
-            element:<CoinDetail />,
-        }
-        ]
-
-
-
+        ],
+        errorElement:<NotFound></NotFound>,
 }]); 
 
 

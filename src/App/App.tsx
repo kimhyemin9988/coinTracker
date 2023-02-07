@@ -38,7 +38,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: normal;
 	background-color: ${props => props.theme.bgColor};
-	color:${props => props.theme.textColor};
+	color:${props => props.theme.mainTitleColor};
 }
 ol, ul {
 	list-style: none;
