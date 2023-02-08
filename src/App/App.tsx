@@ -2,6 +2,7 @@
 import { Outlet } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import RouterApp from './Router';
+import { ReactQueryDevtools } from 'react-query/devtools';
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "LINESeedKR-Bd", "Open Sans", "Helvetica Neue", sans-serif;
@@ -61,12 +62,13 @@ a{
 }
 `
 const App = () => {
-  return (
-    <>
-      <GlobalStyle/>
-	  <Outlet></Outlet>
-    </>
-  );
+	return (
+		<>
+			<GlobalStyle />
+			<Outlet></Outlet>
+			<ReactQueryDevtools initialIsOpen={true} />
+		</>
+	);
 }
 
 export default App;

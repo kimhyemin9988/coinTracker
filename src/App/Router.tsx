@@ -1,9 +1,11 @@
 /* (3) */
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, createBrowserRouter, useParams } from 'react-router-dom';
+import Chart from '../components/Chart';
 import CoinDetail from '../components/CoinDetail';
 import Home from '../components/Home';
 import NotFound from '../components/Notfound';
+import Price from '../components/Price';
 import App from './App';
 /* React.lazy 함수를 사용하면 동적 import를 사용해서 컴포넌트를 렌더링
     모듈을 return하는 콜백함수
@@ -11,20 +13,30 @@ import App from './App';
     fallback은 로드를 기다리는동안 렌더링될 요소를 받음*/
 const RouterApp = createBrowserRouter([
     {
-        path:"/*",
-        element:<App />,
-        children:[
+        path: "/*",
+        element: <App />,
+        children: [
             {
-                path:"",
-                element:<Home />,
+                path: "",
+                element: <Home />,
             },
             {
-                path:":coinId",
-                element:<CoinDetail />,
+                path: ":coinId/*",
+                element: <CoinDetail />,
+                children: [
+                    {
+                        path: "chart",
+                        element: <Chart />,
+                    },
+                    {
+                        path: "price",
+                        element: <Price />,
+                    }
+                ]
             }
         ],
-        errorElement:<NotFound></NotFound>,
-}]); 
+        errorElement: <NotFound></NotFound>,
+    }]);
 
 
 /*

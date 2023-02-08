@@ -1,7 +1,8 @@
+import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-
+import { fetchCoins } from "../api";
 interface CoinType {
     id: string;
     name: string;
@@ -26,23 +27,24 @@ const CoinImg = styled.img`
     height: 50%;
 `
 const Home = () => {
-    const [coins, setCoins] = useState<CoinType[]>([]);
-    const [loading, setLoading] = useState(true);
-    //<CoinType> const coins: CoinType | undefined
-    //'CoinType' 형식에 'map' 속성이 없습니다
-    useEffect(() => {
-        (async () => {
-            const response = await fetch('https://api.coinpaprika.com/v1/coins');
-            const json = await response.json();
-            setCoins(json.slice(0, 100));
-            setLoading(false);
-        })();
-    }, []);
+    const { isLoading, data } = useQuery<CoinType[]>(["allCoins"], fetchCoins);
+    /*<CoinType> const coins: CoinType | undefined
+    'CoinType' 형식에 'map' 속성이 없습니다*/
+    /*     const [coins, setCoins] = useState<CoinType[]>([]);
+        const [loading, setLoading] = useState(true);
+        useEffect(() => {
+            (async () => {
+                const response = await fetch('https://api.coinpaprika.com/v1/coins');
+                const json = await response.json();
+                setCoins(json.slice(0, 100));
+                setLoading(false);
+            })();
+        }, []); */
     /*    console.log(Object.keys(coins[0]).join());
          console.log(Object.values(coins[0]).map(v=>typeof v).join()); */
     return (
         <>
-            {loading ? "loading중입니다." : coins.map((coin) => {
+            {isLoading ? "loading중입니다." : data?.slice(0, 100).map((coin) => {
                 return (
                     <Box1 key={coin.id}>
                         <CoinName>

@@ -1,7 +1,7 @@
-const NotFound = () =>{
-    return(
+const NotFound = () => {
+    return (
         <>
-        <h1>NotFound</h1>
+            <h1>NotFound</h1>
         </>
     );
 }
