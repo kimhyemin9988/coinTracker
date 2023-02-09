@@ -11,7 +11,7 @@ interface Active {
     active: boolean;
 }
 const ChartPriceTab = styled.div<Active>`
-    background-color: ${(props) => props.theme.contentColor};
+    background-color: ${(props) => props.theme.bgColor};
     width: 30%;
     color:${(props) => props.active ? props.theme.mainTitleColor : props.theme.accentColor};
     border-radius: 10px;

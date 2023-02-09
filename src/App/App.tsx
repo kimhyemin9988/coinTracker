@@ -3,6 +3,9 @@ import { Outlet } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import RouterApp from './Router';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'styled-components';
+import { Darktheme, Lighttheme } from '../theme';
+import { useState } from "react"
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "LINESeedKR-Bd", "Open Sans", "Helvetica Neue", sans-serif;
@@ -62,11 +65,18 @@ a{
 }
 `
 const App = () => {
+	const [isDark, setIsDark] = useState<boolean>(true);
+	const toggleTheme = () =>{
+		setIsDark((element)=>(!element));
+	}
 	return (
-		<>	
-			<GlobalStyle />
-			<Outlet></Outlet>
-			<ReactQueryDevtools initialIsOpen={true} />
+		<>
+			<ThemeProvider theme={isDark ? Darktheme : Lighttheme}>
+				<button onClick={toggleTheme}>toggleTheme</button>
+				<GlobalStyle />
+				<Outlet></Outlet>
+				<ReactQueryDevtools initialIsOpen={true} />
+			</ThemeProvider>
 		</>
 	);
 }
