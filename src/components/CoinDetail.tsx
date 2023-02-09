@@ -75,7 +75,7 @@ interface PriceInterface {
     last_updated: string;
 }
 interface coinIdInterface {
-    state: string;
+    coinId : string;
 }
 //https://api.coinpaprika.com/v1/coins/btc-bitcoin
 //https://api.coinpaprika.com/v1/tickers/btc-bitcoin
@@ -88,7 +88,7 @@ interface coinIdInterface {
 const CoinDetail = () => {
     const pricematch = useMatch("/:coinId/price");
     const chartmatch = useMatch("/:coinId/chart");
-    const { state: coinId } = useParams() as unknown as coinIdInterface; // coinId와 api가 일치해야함
+    const { coinId } = useParams() as unknown as coinIdInterface; // coinId와 api가 일치해야함
     const { state: coin } = useLocation() as RouterState;
     const { isLoading: InformLoading, data: inform } = useQuery<InformInterface>(["Inform", coinId], () => fetchCoinInform(coinId));
     const { isLoading: PriceLoading, data: price } = useQuery<PriceInterface>(["Price", coinId], () => fetchCoinPrice(coinId));

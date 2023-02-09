@@ -2,6 +2,8 @@ import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinChart } from "../api";
+import ApexChart from "react-apexcharts";
+import { useState } from "react";
 interface RouterState {
     state: string;
 }
@@ -28,18 +30,48 @@ const Box1 = styled.div`
 const Chart = () => {
     const { state: coinId } = useLocation() as RouterState;
     const { isLoading: chartLoading, data: chart } = useQuery<ChartInterface[]>(["Chart", coinId], () => fetchCoinChart(coinId));
+    const obj1 = chart?.map((element) => parseFloat(element.close)) as number[];//parseFloat으로 형 변환, as number[]통해 undefined 방지
     return (
         <>
             <h1>Chart{coinId}</h1>
-            {chartLoading ? "loading중입니다." : chart?.map((oneDay) => {
-                return (
-                    <Box1 key={oneDay.volume}>
-                        <CoinName>{oneDay.time_open}</CoinName>
-                        <CoinName>{oneDay.time_close}</CoinName>
-                    </Box1>
-                )
-            })}
+            {chartLoading ? "loading중입니다." : <ApexChart type="line" options={{}} series={
+                [
+                    {
+                        name: "close",
+                        data: obj1, 
+                    }
+                ]}></ApexChart>}
         </>
     );
 }
 export default Chart;
+            /* chart?.map((oneDay) => {
+    return (
+        <Box1 key={oneDay.volume}>
+            <CoinName>{oneDay.time_open}</CoinName>
+            <CoinName>{oneDay.time_close}</CoinName>
+        </Box1>
+    )
+}) */
+/*
+const temp1=[
+    {
+        name:혜민
+        age:27
+    },
+    {
+        name:혜진
+        age:25
+    }
+]
+*/
+/*<ApexChart type="line" options={{}} series={
+                [
+                    {
+                        name: "close",
+                        data: close, 
+                    }
+                ]}></ApexChart>*/
+                /*
+                const closeArray = chart?.map((element) => element["close"]).join();
+                */
