@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import { Helmet } from "react-helmet";
 interface CoinType {
     id: string;
     name: string;
@@ -44,6 +45,9 @@ const Home = () => {
          console.log(Object.values(coins[0]).map(v=>typeof v).join()); */
     return (
         <>
+            <Helmet>
+                <title>코인트래커</title>
+            </Helmet>
             {isLoading ? "loading중입니다." : data?.slice(0, 100).map((coin) => {
                 return (
                     <Box1 key={coin.id}>

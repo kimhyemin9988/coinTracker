@@ -5,6 +5,7 @@ import Chart from "./Chart";
 import Price from "./Price";
 import { fetchCoinInform, fetchCoinPrice } from "../api";
 import { useQuery } from "react-query";
+import { Helmet } from "react-helmet";
 //interface를 따로 만들지 않고 <>내부에 객체를 넣기 가능
 interface Active {
     active: boolean;
@@ -73,9 +74,14 @@ interface PriceInterface {
     beta_value: number;
     first_data_at: string;
     last_updated: string;
-}
+    quotes: {
+        USD: {
+            price: number;
+        }
+    }
+}//{price}
 interface coinIdInterface {
-    coinId : string;
+    coinId: string;
 }
 //https://api.coinpaprika.com/v1/coins/btc-bitcoin
 //https://api.coinpaprika.com/v1/tickers/btc-bitcoin
@@ -92,7 +98,6 @@ const CoinDetail = () => {
     const { state: coin } = useLocation() as RouterState;
     const { isLoading: InformLoading, data: inform } = useQuery<InformInterface>(["Inform", coinId], () => fetchCoinInform(coinId));
     const { isLoading: PriceLoading, data: price } = useQuery<PriceInterface>(["Price", coinId], () => fetchCoinPrice(coinId));
-
     /*     const [inform, setInform] = useState<InformInterface>();
         const [price, setPrice] = useState<PriceInterface>();
         const [loading, setLoading] = useState(true);
@@ -116,12 +121,15 @@ const CoinDetail = () => {
     const loading = InformLoading || PriceLoading;
     return (
         <>
+            <Helmet>
+                <title>코인트래커:{coin?.symbol}</title>
+            </Helmet>
             <CoinContainer>
                 <CoinName>Name : {coin?.name ? coin?.name : (loading ? "loading..." : inform?.name)}</CoinName>
                 <CoinText>Rank : {coin?.rank ? coin?.rank : (loading ? "loading..." : inform?.rank)}</CoinText>
                 <CoinText>symbol : {coin?.symbol ? coin?.symbol : (loading ? "loading..." : inform?.symbol)}</CoinText>
-                <CoinText>symbol : {inform?.description}</CoinText>
-                <CoinText>open_source : {inform?.open_source}</CoinText>
+                <CoinText>Price : {price?.quotes.USD.price.toFixed(2)}</CoinText>
+                <CoinText>description : {inform?.description}</CoinText>
                 <CoinText>total_supply : {price?.total_supply}</CoinText>
                 <CoinText>max_supply : {price?.max_supply}</CoinText>
             </CoinContainer>

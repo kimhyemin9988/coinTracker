@@ -63,7 +63,7 @@ a{
 `
 const App = () => {
 	return (
-		<>
+		<>	
 			<GlobalStyle />
 			<Outlet></Outlet>
 			<ReactQueryDevtools initialIsOpen={true} />
