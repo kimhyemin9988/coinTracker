@@ -6,32 +6,30 @@ import Price from "./Price";
 import { fetchCoinInform, fetchCoinPrice } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
+import { Header, ToggleThemeBtn, Main, Box1 } from "./Home";
 //interface를 따로 만들지 않고 <>내부에 객체를 넣기 가능
 interface Active {
     active: boolean;
 }
-const ChartPriceTab = styled.div<Active>`
-    background-color: ${(props) => props.theme.bgColor};
-    width: 30%;
-    color:${(props) => props.active ? props.theme.mainTitleColor : props.theme.accentColor};
-    border-radius: 10px;
+const ChartPriceTab = styled(ToggleThemeBtn)<Active>`
+    width: 50%;
+    border-radius: 30px;
     height: auto;
-    a{
-        display: block;
-    }
 `
 const CoinName = styled.span`
-    color: ${(props) => props.theme.accentColor};
+    color: ${(props) => props.theme.titleColor};
 `
-const CoinText = styled.span`
+export const CoinText = styled.span`
     color:${(props) => props.theme.textColor};
 `
-const CoinContainer = styled.div`
-    width: 100px;
+export const CoinContainer = styled(Box1)`
+    width: 100%;
     height: auto;
-    background-color: ${(props) => props.theme.contentColor};
+    display: flex;
 `
-interface RouterState {
+const HomeBtn = styled(ToggleThemeBtn)``
+
+export interface RouterState {
     state: {
         id: string;
         name: string;
@@ -63,7 +61,7 @@ interface InformInterface {
     first_data_at: string;
     last_data_at: string;
 }
-interface PriceInterface {
+export interface PriceInterface {
     id: string;
     name: string;
     symbol: string;
@@ -77,6 +75,8 @@ interface PriceInterface {
     quotes: {
         USD: {
             price: number;
+            ath_price: number;
+            percent_from_price_ath:number;
         }
     }
 }//{price}
@@ -122,24 +122,31 @@ const CoinDetail = () => {
     return (
         <>
             <Helmet>
-                <title>코인트래커:{coin?.symbol}</title>
+                <title>{`코인트래커:${coin?.symbol}`}</title>
             </Helmet>
-            <CoinContainer>
-                <CoinName>Name : {coin?.name ? coin?.name : (loading ? "loading..." : inform?.name)}</CoinName>
-                <CoinText>Rank : {coin?.rank ? coin?.rank : (loading ? "loading..." : inform?.rank)}</CoinText>
-                <CoinText>symbol : {coin?.symbol ? coin?.symbol : (loading ? "loading..." : inform?.symbol)}</CoinText>
-                <CoinText>Price : {price?.quotes.USD.price.toFixed(2)}</CoinText>
-                <CoinText>description : {inform?.description}</CoinText>
-                <CoinText>total_supply : {price?.total_supply}</CoinText>
-                <CoinText>max_supply : {price?.max_supply}</CoinText>
-            </CoinContainer>
-            <ChartPriceTab active={chartmatch !== null}>
-                <Link to="chart" state={coinId}>see chart</Link>
-            </ChartPriceTab>
-            <ChartPriceTab active={pricematch !== null}>
-                <Link to="price" state={coinId}>see price</Link>
-            </ChartPriceTab>
-            <Outlet></Outlet>
+            <Header>
+                <HomeBtn>
+                    <Link to="/">코인트래커[home]</Link>
+                </HomeBtn>
+            </Header>
+            <Main>
+                <CoinContainer>
+                    <CoinName>{coin?.name ? coin?.name : (loading ? "loading..." : inform?.name)}</CoinName>
+                    <CoinText>Rank {coin?.rank ? coin?.rank : (loading ? "loading..." : inform?.rank)}</CoinText>
+                    <CoinText>symbol {coin?.symbol ? coin?.symbol : (loading ? "loading..." : inform?.symbol)}</CoinText>
+                    <CoinText>Price {price?.quotes.USD.price.toFixed(2)}</CoinText>
+                    <CoinText>description {inform?.description}</CoinText>
+                    <CoinText>total_supply {price?.total_supply}</CoinText>
+                    <CoinText>max_supply {price?.max_supply}</CoinText>
+                </CoinContainer>
+                <ChartPriceTab active={chartmatch !== null}>
+                    <Link to="chart" state={coinId}>see chart</Link>
+                </ChartPriceTab>
+                <ChartPriceTab active={pricematch !== null}>
+                    <Link to="price" state={coinId}>see price</Link>
+                </ChartPriceTab>
+                <Outlet></Outlet>
+            </Main>
         </>
     );
 };

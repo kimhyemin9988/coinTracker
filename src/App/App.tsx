@@ -66,15 +66,12 @@ a{
 `
 const App = () => {
 	const [isDark, setIsDark] = useState<boolean>(true);
-	const toggleTheme = () =>{
-		setIsDark((element)=>(!element));
-	}
+
 	return (
 		<>
 			<ThemeProvider theme={isDark ? Darktheme : Lighttheme}>
-				<button onClick={toggleTheme}>toggleTheme</button>
 				<GlobalStyle />
-				<Outlet></Outlet>
+				<Outlet context={[setIsDark]}></Outlet>
 				<ReactQueryDevtools initialIsOpen={true} />
 			</ThemeProvider>
 		</>
