@@ -16,16 +16,31 @@ const ChartPriceTab = styled(ToggleThemeBtn)<Active>`
     border-radius: 30px;
     height: auto;
 `
+export const OverviewItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+`
+export const ItemContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+`
 const CoinName = styled.span`
     color: ${(props) => props.theme.titleColor};
 `
 export const CoinText = styled.span`
     color:${(props) => props.theme.textColor};
+    margin: 5px;
 `
 export const CoinContainer = styled(Box1)`
-    width: 100%;
+    width: 95%;
     height: auto;
     display: flex;
+    flex-direction: column;
 `
 const HomeBtn = styled(ToggleThemeBtn)``
 
@@ -131,13 +146,25 @@ const CoinDetail = () => {
             </Header>
             <Main>
                 <CoinContainer>
-                    <CoinName>{coin?.name ? coin?.name : (loading ? "loading..." : inform?.name)}</CoinName>
-                    <CoinText>Rank {coin?.rank ? coin?.rank : (loading ? "loading..." : inform?.rank)}</CoinText>
-                    <CoinText>symbol {coin?.symbol ? coin?.symbol : (loading ? "loading..." : inform?.symbol)}</CoinText>
-                    <CoinText>Price {price?.quotes.USD.price.toFixed(2)}</CoinText>
-                    <CoinText>description {inform?.description}</CoinText>
-                    <CoinText>total_supply {price?.total_supply}</CoinText>
-                    <CoinText>max_supply {price?.max_supply}</CoinText>
+                    <OverviewItem>
+                        <CoinName>{coin?.name ? coin?.name : (loading ? "loading..." : inform?.name)}</CoinName>
+                    </OverviewItem>
+                    <OverviewItem>
+                    <ItemContainer>
+                    <CoinText>Rank : {coin?.rank ? coin?.rank : (loading ? "loading..." : inform?.rank)}</CoinText>
+                    <CoinText>symbol : {coin?.symbol ? coin?.symbol : (loading ? "loading..." : inform?.symbol)}</CoinText>
+                    <CoinText>Price : {price?.quotes.USD.price.toFixed(2)}</CoinText>
+                    </ItemContainer>
+                    </OverviewItem>
+                    <OverviewItem>
+                    <CoinText>{inform?.description}</CoinText>
+                    </OverviewItem>
+                    <OverviewItem>
+                    <ItemContainer>
+                    <CoinText>total supply : {price?.total_supply}</CoinText>
+                    <CoinText>max supply : {price?.max_supply}</CoinText>
+                    </ItemContainer>
+                    </OverviewItem>
                 </CoinContainer>
                 <ChartPriceTab active={chartmatch !== null}>
                     <Link to="chart" state={coinId}>see chart</Link>
