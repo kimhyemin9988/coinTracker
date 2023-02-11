@@ -1,6 +1,6 @@
 /* (3) */
 import { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, createBrowserRouter, useParams } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, createBrowserRouter, useParams } from 'react-router-dom';
 import Chart from '../components/Chart';
 import CoinDetail from '../components/CoinDetail';
 import Home from '../components/Home';
