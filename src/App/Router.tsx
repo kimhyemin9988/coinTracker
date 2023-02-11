@@ -36,7 +36,7 @@ const RouterApp = createBrowserRouter([
             }
         ],
         errorElement: <NotFound></NotFound>,
-    }]);
+    }], { basename: "/coinTracker" });
 
 
 /*
