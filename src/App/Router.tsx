@@ -13,11 +13,11 @@ import App from './App';
     fallback은 로드를 기다리는동안 렌더링될 요소를 받음*/
 const RouterApp = createBrowserRouter([
     {
-        path: "/*",
+        path: "/",
         element: <App />,
         children: [
             {
-                path: "",
+                path: "coinTracker/",
                 element: <Home />,
             },
             {

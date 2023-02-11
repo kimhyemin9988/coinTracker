@@ -107,12 +107,12 @@ interface coinIdInterface {
     Link state로 보냈으니 state로 받기
 */
 const CoinDetail = () => {
-    const pricematch = useMatch("/:coinId/price");
-    const chartmatch = useMatch("/:coinId/chart");
+    const pricematch = useMatch(":coinId/price");
+    const chartmatch = useMatch(":coinId/chart");
     const { coinId } = useParams() as unknown as coinIdInterface; // coinId와 api가 일치해야함
     const { state: coin } = useLocation() as RouterState;
-    const { isLoading: InformLoading, data: inform } = useQuery<InformInterface>(["Inform", coinId], () => fetchCoinInform(coinId));
-    const { isLoading: PriceLoading, data: price } = useQuery<PriceInterface>(["Price", coinId], () => fetchCoinPrice(coinId));
+    const { isLoading: InformLoading, data: inform } = useQuery<InformInterface>(["Inform", coin.id], () => fetchCoinInform(coin.id));
+    const { isLoading: PriceLoading, data: price } = useQuery<PriceInterface>(["Price", coin.id], () => fetchCoinPrice(coin.id));
     /*     const [inform, setInform] = useState<InformInterface>();
         const [price, setPrice] = useState<PriceInterface>();
         const [loading, setLoading] = useState(true);
@@ -141,7 +141,7 @@ const CoinDetail = () => {
             </Helmet>
             <Header>
                 <HomeBtn>
-                    <Link to="/">코인트래커[home]</Link>
+                    <Link to="coinTracker">코인트래커[home]</Link>
                 </HomeBtn>
             </Header>
             <Main>
@@ -167,10 +167,10 @@ const CoinDetail = () => {
                     </OverviewItem>
                 </CoinContainer>
                 <ChartPriceTab active={chartmatch !== null}>
-                    <Link to="chart" state={coinId}>see chart</Link>
+                    <Link to="chart" state={coin.id}>see chart</Link>
                 </ChartPriceTab>
                 <ChartPriceTab active={pricematch !== null}>
-                    <Link to="price" state={coinId}>see price</Link>
+                    <Link to="price" state={coin.id}>see price</Link>
                 </ChartPriceTab>
                 <Outlet></Outlet>
             </Main>
