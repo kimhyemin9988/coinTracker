@@ -13,7 +13,7 @@ const Price = () => {
             {priceLoading ? "loading중입니다." :
                 <CoinContainer>
                     <OverviewItem>
-                        <CoinText>price : {price?.quotes.USD.price}</CoinText>
+                        <CoinText>price : {price?.quotes.USD.ath_price}</CoinText>
                         <CoinText>All time high : {price?.quotes.USD.ath_price}</CoinText>
                         <CoinText>percent from price ATH : {price?.quotes.USD.percent_from_price_ath}%</CoinText>
                     </OverviewItem>

@@ -17,7 +17,7 @@ const RouterApp = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "coinTracker/",
+                path: "",
                 element: <Home />,
             },
             {
