@@ -1,6 +1,6 @@
 /* (3) */
 import { Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route, createBrowserRouter, useParams } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, createBrowserRouter } from 'react-router-dom';
 import Chart from '../components/Chart';
 import CoinDetail from '../components/CoinDetail';
 import Home from '../components/Home';
@@ -36,7 +36,7 @@ const RouterApp = createBrowserRouter([
             }
         ],
         errorElement: <NotFound></NotFound>,
-    }], { basename: "/coinTracker/" });
+    }], { basename: "/coinTracker" });
 
 
 /*

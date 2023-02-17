@@ -43,6 +43,7 @@ body {
 	line-height: normal;
 	background-color: ${props => props.theme.bgColor};
 	color:${props => props.theme.mainTitleColor};
+	font-family: "LINESeedKR-Bd", "Open Sans", "Helvetica Neue", sans-serif;
 }
 ol, ul {
 	list-style: none;
